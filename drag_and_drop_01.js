@@ -202,16 +202,13 @@ if (reversed == null) { reversed = false; }
 			card.on("mousedown", onMouseDown.bind(this));
 			card.on("pressmove", onMouseMove.bind(this));
 			card.on("pressup", onMouseUp.bind(this));
-			card.originX = card.x;
-			card.originY = card.y;
+			card.startPos = {x:card.x, y:card.y};
 		});
 		
 		// setup cages
 		frame_index = 0;
 		all_cages.forEach((cage)=>{
 			cage.gotoAndStop(frame_index++);
-			cage.originX = cage.x;
-			cage.originY = cage.y;
 		});
 		
 		// mouse down event
@@ -244,9 +241,9 @@ if (reversed == null) { reversed = false; }
 				card.x = hit_cage.x;
 				card.y = hit_cage.y;
 				//card.mouseEnabled = false;  // prevents object from being move when place correctly
-			}else{ // return card back
-				card.x = card.originX;
-				card.y = card.originY;
+			} else { // return card back
+				card.x = card.startPos.x;
+				card.y = card.startPos.y;
 			}
 		}
 		
