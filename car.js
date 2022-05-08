@@ -25,8 +25,8 @@ lib.ssMetadata = [];
 
 
 
-(lib.CachedBmp_10 = function() {
-	this.initialize(img.CachedBmp_10);
+(lib.CachedBmp_1 = function() {
+	this.initialize(img.CachedBmp_1);
 }).prototype = p = new cjs.Bitmap();
 p.nominalBounds = new cjs.Rectangle(0,0,4154,272);// helper functions:
 
@@ -177,7 +177,7 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// Layer_1
-	this.instance = new lib.CachedBmp_10();
+	this.instance = new lib.CachedBmp_1();
 	this.instance.setTransform(-1.5,-134.45,0.5,0.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
@@ -377,79 +377,91 @@ if (reversed == null) { reversed = false; }
 		//alert("Moused over");
 		//console.log(child.name)
 		
-		stage.enableMouseOver(24);  // 24 == fps
+		// setup stage
+		var fps = 24;
+		stage.enableMouseOver(fps);
 		
+		// collect interactive components
 		var all_wheels = [];
-		this.children.forEach((child)=>{
-			if (child.name != null && child.name.indexOf("Wheel") != -1) {
-				all_wheels.push(child);
-			}
-		})
-		
 		var all_car_components = [];
 		this.children.forEach((child)=>{
-			if (child.name != null && child.name.indexOf("car") != -1) {
-				all_car_components.push(child);
+			
+			if (child.name != null){
+				
+				if (child.name.indexOf("Wheel") != -1) {
+					
+					all_wheels.push(child);
+				} 
+				if (child.name.indexOf("car") != -1){
+					
+					all_car_components.push(child);
+				}
 			}
 		})
 		
-		var background_start_x = this.animBg_01.x
-		var frequency = 3;
-		stage.enableMouseOver(frequency);
+		// store initial position of animated background
+		this.animBg_01.startPos = {x:this.animBg_01.x, y:this.animBg_01.y}
+		
+		// set buttons text
 		this.buttonPlay.tf.text = "Jeď";
-		this.buttonPlay.addEventListener("click", fl_OnbPlayPressed.bind(this));
-		
 		this.buttonStop.tf.text = "Zastav";
-		this.buttonStop.addEventListener("click", fl_OnStopPressed.bind(this));
-		
 		this.buttonJump.tf.text = "Skoč";
-		this.buttonJump.addEventListener("click", fl_OnJumpPressed.bind(this));
-		
 		this.buttonEngineOn.tf.text = "Nastartuj";
 		this.buttonEngineOff.tf.text = "Vypni";
-		this.buttonEngineOn.addEventListener("click", fl_OnEngineOnPressed.bind(this));
-		this.buttonEngineOff.addEventListener("click", fl_OnEngineOffPressed.bind(this));
 		
-		function fl_OnEngineOnPressed(){
+		
+		// constant event methods
+		const fl_OnEngineOnPressed =()=>{
 			
 			this.carBody_01.play();
 			this.carHead_01.play();
 		}
 		
-		function fl_OnEngineOffPressed(){
+		const fl_OnEngineOffPressed =()=>{
 			
 			this.carBody_01.stop();
 			this.carHead_01.stop();
 		}
 		
-		
-		function fl_OnbPlayPressed(){
-			
-			all_wheels.forEach((item)=>{item.play()});
-			createjs.Tween.removeAllTweens();
-			this.animBg_01.x = background_start_x;
-			createjs.Tween
-				.get(this.animBg_01,{loop:true})
-				.to({x:0}, 5000)
-		}
-		
-		function fl_OnStopPressed(){
+		const fl_OnStopPressed =()=>{
 			
 			all_wheels.forEach((item)=>{item.stop()});
 			createjs.Tween.removeAllTweens();
 		}
 		
-		
-		function fl_OnJumpPressed(){
+		var jum_in_progress = false
+		const fl_OnJumpPressed =()=>{
 			
+			if (jum_in_progress) return;
+			jum_in_progress = true;
 			all_car_components.forEach((item)=>{
 				
 				var start_y = item.y;
 				createjs.Tween
-				.get(item)
-				.to({y:start_y - 50}, 600)
-				.to({y:start_y}, 600)
+					.get(item)
+					.to({y:start_y - 50}, 600)
+					.to({y:start_y}, 600)
+					.call(function() { jum_in_progress = false })
 			});
+		}
+		
+		// register events
+		this.buttonPlay.addEventListener("click", fl_OnbPlayPressed.bind(this)); // bind example
+		this.buttonStop.addEventListener("click", fl_OnStopPressed); // const method example
+		this.buttonJump.addEventListener("click", fl_OnJumpPressed);
+		this.buttonEngineOn.addEventListener("click", fl_OnEngineOnPressed);
+		this.buttonEngineOff.addEventListener("click", fl_OnEngineOffPressed);
+		
+		
+		// event methods
+		function fl_OnbPlayPressed(){
+			
+			all_wheels.forEach((item)=>{item.play()});
+			createjs.Tween.removeAllTweens();
+			this.animBg_01.x = this.animBg_01.startPos.x;
+			createjs.Tween
+				.get(this.animBg_01,{loop:true})
+				.to({x:0}, 5000)
 		}
 		
 		// Stop All on Start
@@ -545,7 +557,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/CachedBmp_10.png?1651931146698", id:"CachedBmp_10"}
+		{src:"images/CachedBmp_1.png?1651996087391", id:"CachedBmp_1"}
 	],
 	preloads: []
 };

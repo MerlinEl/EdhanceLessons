@@ -177,18 +177,21 @@ if (reversed == null) { reversed = false; }
 		}
 		createjs.Touch.enable(stage);
 		
+		// collect cards and cages
 		var all_cards = [];
 		var all_cages = [];
-		
-		// collect cards and cages
 		this.children.forEach((child)=>{
-			if (child.name != null && child.name.indexOf("card") != -1) {
-				all_cards.push(child);
-			}
-		})
-		this.children.forEach((child)=>{
-			if (child.name != null && child.name.indexOf("cage") != -1) {
-				all_cages.push(child);
+			
+			if (child.name != null){
+				
+				if (child.name.indexOf("card") != -1) {
+					
+					all_cards.push(child);
+					
+				} else if (child.name.indexOf("cage") != -1) {
+					
+					all_cages.push(child);
+				}
 			}
 		})
 		
