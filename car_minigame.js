@@ -742,7 +742,7 @@ if (reversed == null) { reversed = false; }
 				
 				this.body.gotoAndStop(0);
 				this.body.x = -10;
-				this.body.y = this.randomNumber([200, 370]);
+				this.body.y = this.randomNumber([200, 370, 370]);
 			}
 			sendReport(was_hit){
 				
@@ -762,7 +762,7 @@ if (reversed == null) { reversed = false; }
 			}
 			randomNumber(numbers) {
 			  
-				return numbers[this.randomBetween(0, numbers.length)];
+				return numbers[this.randomBetween(0, numbers.length-1)];
 			}
 			wasHitCar(targetContainer){
 				var rect = {
@@ -799,10 +799,6 @@ if (reversed == null) { reversed = false; }
 		
 		function moveProjectile(event) {
 			
-			// fiter bug Y undefined ( what is this ? )
-			if (!projectile.body.y) return;
-			//console.log("PROJECTILE:"+projectile.body.y)
-		
 			// move 100 pixels per second (elapsedTimeInMS / 1000msPerSecond * pixelsPerSecond):
 			// event.delta/1000*100
 		    projectile.body.x += event.delta/1000*projectile.maxSpeed;
@@ -861,7 +857,7 @@ if (reversed == null) { reversed = false; }
 			var start_y = this.carTruck.y;
 			createjs.Tween
 				.get(this.carTruck)
-				.to({y:start_y - 50}, 600)
+				.to({y:start_y - 80}, 600)
 				.to({y:start_y}, 600)
 				.call(function() { isCarJumping = false })
 		
@@ -979,8 +975,8 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/CachedBmp_1.png?1652012760208", id:"CachedBmp_1"},
-		{src:"images/car_minigame_atlas_1.png?1652012760186", id:"car_minigame_atlas_1"}
+		{src:"images/CachedBmp_1.png?1652013836818", id:"CachedBmp_1"},
+		{src:"images/car_minigame_atlas_1.png?1652013836797", id:"car_minigame_atlas_1"}
 	],
 	preloads: []
 };
