@@ -2,9 +2,7 @@
 
 var p; // shortcut to reference prototypes
 var lib={};var ss={};var img={};
-lib.ssMetadata = [
-		{name:"car_minigame_atlas_1", frames: [[0,0,140,73],[0,75,140,73]]}
-];
+lib.ssMetadata = [];
 
 
 (lib.AnMovieClip = function(){
@@ -30,21 +28,7 @@ lib.ssMetadata = [
 (lib.CachedBmp_1 = function() {
 	this.initialize(img.CachedBmp_1);
 }).prototype = p = new cjs.Bitmap();
-p.nominalBounds = new cjs.Rectangle(0,0,4154,272);
-
-
-(lib.CachedBmp_3 = function() {
-	this.initialize(ss["car_minigame_atlas_1"]);
-	this.gotoAndStop(0);
-}).prototype = p = new cjs.Sprite();
-
-
-
-(lib.CachedBmp_2 = function() {
-	this.initialize(ss["car_minigame_atlas_1"]);
-	this.gotoAndStop(1);
-}).prototype = p = new cjs.Sprite();
-// helper functions:
+p.nominalBounds = new cjs.Rectangle(0,0,4154,272);// helper functions:
 
 function mc_symbol_clone() {
 	var clone = this._cloneProps(new this.constructor(this.mode, this.startPosition, this.loop, this.reversed));
@@ -152,6 +136,60 @@ if (reversed == null) { reversed = false; }
 	this._renderFirstFrame();
 
 }).prototype = getMCSymbolPrototype(lib.mov_wheel_gra, new cjs.Rectangle(-23.2,-23.2,46.5,46.5), null);
+
+
+(lib.mov_result_panel = function(mode,startPosition,loop,reversed) {
+if (loop == null) { loop = true; }
+if (reversed == null) { reversed = false; }
+	var props = new Object();
+	props.mode = mode;
+	props.startPosition = startPosition;
+	props.labels = {};
+	props.loop = loop;
+	props.reversed = reversed;
+	cjs.MovieClip.apply(this,[props]);
+
+	// timeline functions:
+	this.frame_0 = function() {
+		this.stop();
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(2));
+
+	// Layer_2
+	this.text = new cjs.Text("GRATULACE\nVYHRÁL JSI !!!", "bold 24px 'Minion Pro Cond'", "#003399");
+	this.text.textAlign = "center";
+	this.text.lineHeight = 35;
+	this.text.lineWidth = 177;
+	this.text.parent = this;
+	this.text.setTransform(4.95,-31.35);
+
+	this.timeline.addTween(cjs.Tween.get(this.text).wait(1).to({text:"NEVYŠLO TO\nPROHRÁL JSI !!!",color:"#FF0000"},0).wait(1));
+
+	// Layer_1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f().s("#003300").ss(3,1,1).p("AvgqhIfBAAQDIAAAADIIAAOzQAADIjIAAI/BAAQjIAAAAjIIAAuzQAAjIDIAAg");
+	this.shape.setTransform(0.025,0.025);
+
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("#66CC00").s().p("AvgKiQjIAAAAjIIAAuzQAAjIDIAAIfBAAQDIAAAADIIAAOzQAADIjIAAg");
+	this.shape_1.setTransform(0.025,0.025);
+
+	this.shape_2 = new cjs.Shape();
+	this.shape_2.graphics.f().s("#FF0000").ss(3,1,1).p("AvgqhIfBAAQDIAAAADIIAAOzQAADIjIAAI/BAAQjIAAAAjIIAAuzQAAjIDIAAg");
+	this.shape_2.setTransform(0.025,0.025);
+
+	this.shape_3 = new cjs.Shape();
+	this.shape_3.graphics.f("#CCCCCC").s().p("AvgKiQjIAAAAjIIAAuzQAAjIDIAAIfBAAQDIAAAADIIAAOzQAADIjIAAg");
+	this.shape_3.setTransform(0.025,0.025);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape}]}).to({state:[{t:this.shape_3},{t:this.shape_2}]},1).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(-120.7,-68.8,241.5,137.7);
 
 
 (lib.mov_hit = function(mode,startPosition,loop,reversed) {
@@ -327,6 +365,29 @@ if (reversed == null) { reversed = false; }
 }).prototype = getMCSymbolPrototype(lib.Symbol2, new cjs.Rectangle(-1.5,-1.5,96,117.3), null);
 
 
+(lib.Scene_1_panels = function(mode,startPosition,loop,reversed) {
+if (loop == null) { loop = true; }
+if (reversed == null) { reversed = false; }
+	var props = new Object();
+	props.mode = mode;
+	props.startPosition = startPosition;
+	props.labels = {};
+	props.loop = loop;
+	props.reversed = reversed;
+	cjs.MovieClip.apply(this,[props]);
+
+	// panels
+	this.resultPanel = new lib.mov_result_panel();
+	this.resultPanel.name = "resultPanel";
+	this.resultPanel.setTransform(484.8,385.65);
+
+	this.timeline.addTween(cjs.Tween.get(this.resultPanel).wait(1));
+
+	this._renderFirstFrame();
+
+}).prototype = getMCSymbolPrototype(lib.Scene_1_panels, null, null);
+
+
 (lib.Scene_1_background = function(mode,startPosition,loop,reversed) {
 if (loop == null) { loop = true; }
 if (reversed == null) { reversed = false; }
@@ -496,25 +557,56 @@ if (reversed == null) { reversed = false; }
 	cjs.MovieClip.apply(this,[props]);
 
 	// buttons
+	this.text = new cjs.Text("/5", "24px 'Minion Pro'", "#FF0000");
+	this.text.lineHeight = 34;
+	this.text.lineWidth = 32;
+	this.text.parent = this;
+	this.text.setTransform(957.5,24.2);
+
+	this.text_1 = new cjs.Text("/20", "24px 'Minion Pro'", "#009900");
+	this.text_1.lineHeight = 34;
+	this.text_1.lineWidth = 36;
+	this.text_1.parent = this;
+	this.text_1.setTransform(833.05,24.2);
+
+	this.tfLevel = new cjs.Text("1", "24px 'Minion Pro'");
+	this.tfLevel.name = "tfLevel";
+	this.tfLevel.lineHeight = 34;
+	this.tfLevel.lineWidth = 46;
+	this.tfLevel.parent = this;
+	this.tfLevel.setTransform(658.75,24.2);
+
+	this.text_2 = new cjs.Text("level:", "24px 'Minion Pro'", "#003399");
+	this.text_2.lineHeight = 34;
+	this.text_2.lineWidth = 53;
+	this.text_2.parent = this;
+	this.text_2.setTransform(602.25,24.25);
+
 	this.tfBad = new cjs.Text("0", "24px 'Minion Pro'", "#FF0000");
 	this.tfBad.name = "tfBad";
 	this.tfBad.lineHeight = 34;
-	this.tfBad.lineWidth = 66;
+	this.tfBad.lineWidth = 32;
 	this.tfBad.parent = this;
-	this.tfBad.setTransform(929.5,27.35);
+	this.tfBad.setTransform(921.35,24.2);
 
-	this.instance = new lib.CachedBmp_3();
-	this.instance.setTransform(880.75,19.05,0.5,0.5);
+	this.text_3 = new cjs.Text("bad:", "24px 'Minion Pro'", "#003399");
+	this.text_3.lineHeight = 34;
+	this.text_3.lineWidth = 45;
+	this.text_3.parent = this;
+	this.text_3.setTransform(872.7,24.25);
 
 	this.tfGood = new cjs.Text("0", "24px 'Minion Pro'", "#009900");
 	this.tfGood.name = "tfGood";
 	this.tfGood.lineHeight = 34;
-	this.tfGood.lineWidth = 66;
+	this.tfGood.lineWidth = 36;
 	this.tfGood.parent = this;
-	this.tfGood.setTransform(803.25,27.35);
+	this.tfGood.setTransform(793.2,24.2);
 
-	this.instance_1 = new lib.CachedBmp_2();
-	this.instance_1.setTransform(743.85,19.05,0.5,0.5);
+	this.text_4 = new cjs.Text("good:", "24px 'Minion Pro'", "#003399");
+	this.text_4.lineHeight = 34;
+	this.text_4.lineWidth = 57;
+	this.text_4.parent = this;
+	this.text_4.setTransform(731.9,24.25);
 
 	this.buttonJump = new lib.mov_button_01();
 	this.buttonJump.name = "buttonJump";
@@ -541,7 +633,7 @@ if (reversed == null) { reversed = false; }
 	this.buttonPlay.setTransform(157.15,76.75);
 	new cjs.ButtonHelper(this.buttonPlay, 0, 1, 2);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.buttonPlay},{t:this.buttonStop},{t:this.buttonEngineOn},{t:this.buttonEngineOff},{t:this.buttonJump},{t:this.instance_1},{t:this.tfGood},{t:this.instance},{t:this.tfBad}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.buttonPlay},{t:this.buttonStop},{t:this.buttonEngineOn},{t:this.buttonEngineOff},{t:this.buttonJump},{t:this.text_4},{t:this.tfGood},{t:this.text_3},{t:this.tfBad},{t:this.text_2},{t:this.tfLevel},{t:this.text_1},{t:this.text}]}).wait(1));
 
 	this._renderFirstFrame();
 
@@ -669,6 +761,7 @@ if (reversed == null) { reversed = false; }
 		if(this.totalFrames == 1) {
 			this.isSingleFrame = true;
 		}
+		this.resultPanel = this.panels.resultPanel;
 		this.buttonPlay = this.buttons.buttonPlay;
 		this.buttonStop = this.buttons.buttonStop;
 		this.buttonEngineOn = this.buttons.buttonEngineOn;
@@ -676,6 +769,7 @@ if (reversed == null) { reversed = false; }
 		this.buttonJump = this.buttons.buttonJump;
 		this.tfGood = this.buttons.tfGood;
 		this.tfBad = this.buttons.tfBad;
+		this.tfLevel = this.buttons.tfLevel;
 		this.carTruck = this.interactive.carTruck;
 		this.animBg_01 = this.background.animBg_01;
 		//debug messages
@@ -688,6 +782,7 @@ if (reversed == null) { reversed = false; }
 		var isCrarMoving = false;
 		var isCarJumping = false;
 		var isEngineOn = false;
+		this.resultPanel.visible = false;
 		
 		// setup timer
 		// https://createjs.com/tutorials/Animation%20and%20Ticker/
@@ -697,6 +792,7 @@ if (reversed == null) { reversed = false; }
 		// collect interactive components
 		var all_wheels = [];
 		var all_car_components = [];
+		var all_buttons = [];
 		this.carTruck.children.forEach((child)=>{
 			
 			if (child.name != null){
@@ -708,6 +804,16 @@ if (reversed == null) { reversed = false; }
 				if (child.name.indexOf("car") != -1){
 					
 					all_car_components.push(child);
+				}
+			}
+		})
+		this.children.forEach((child)=>{
+			
+			if (child.name != null){
+				
+				if (child.name.indexOf("button") != -1){
+					
+					all_buttons.push(child);
 				}
 			}
 		})
@@ -726,6 +832,11 @@ if (reversed == null) { reversed = false; }
 		class Projectile {
 			
 			container=null;
+			resultPanel=null;
+			car=null;
+			tfLevel=null;
+			tfGood=null;
+			tfBad=null;
 			body=null;
 			wasHit=false;
 			maxSpeed=700;
@@ -733,6 +844,11 @@ if (reversed == null) { reversed = false; }
 			carHeight=170;
 			constructor(container) {
 				this.container = container;
+				this.resultPanel = container.resultPanel;
+				this.car = container.carTruck;
+				this.tfLevel = container.tfLevel;
+				this.tfGood = container.tfGood;
+				this.tfBad = container.tfBad;
 				this.body = new lib.mov_bulet();
 				this.body.name = "projectile_0001";
 				this.container.addChild(this.body);
@@ -742,18 +858,33 @@ if (reversed == null) { reversed = false; }
 				
 				this.body.gotoAndStop(0);
 				this.body.x = -10;
+				 // we will get offten hit than miss
 				this.body.y = this.randomNumber([200, 370, 370]);
 			}
 			sendReport(was_hit){
 				
+				// show results
 				if (was_hit){
 					
 					this.body.gotoAndStop(1);
-					this.container.tfBad.text = parseInt(this.container.tfBad.text) + 1;
+					this.tfBad.text = parseInt(this.tfBad.text) + 1;
 					
 				} else {
 					
-					this.container.tfGood.text = parseInt(this.container.tfGood.text) + 1;
+					this.tfGood.text = parseInt(this.tfGood.text) + 1;
+				}
+				// finish game
+				if (parseInt(this.tfGood.text) >= 20){ // show win
+					
+					this.container.freezeGame();
+					this.resultPanel.gotoAndStop(0);
+					this.resultPanel.visible = true;
+					
+				} else if (parseInt(this.tfBad.text) >= 5){ // show lose
+					
+					this.container.freezeGame();
+					this.resultPanel.gotoAndStop(1);
+					this.resultPanel.visible = true;
 				}
 			}
 			randomBetween(min, max) {
@@ -765,25 +896,26 @@ if (reversed == null) { reversed = false; }
 				return numbers[this.randomBetween(0, numbers.length-1)];
 			}
 			wasHitCar(targetContainer){
-				var rect = {
+				// create rect at current car pos
+				var car_rect = {
 					
-					left:this.container.carTruck.x,
-					top:this.container.carTruck.y - this.carHeight,
-					right:this.container.carTruck.x + this.carWidth,
-					btm:this.container.carTruck.y
+					left:this.car.x,
+					top:this.car.y - this.carHeight,
+					right:this.car.x + this.carWidth,
+					btm:this.car.y
 				}
 				let was_hit = false;
 				// check left - right rect (when projectile lay on truck at X)
-				if (this.body.x >  rect.left && this.body.x <  rect.right){
+				if (this.body.x >  car_rect.left && this.body.x <  car_rect.right){
 					/*console.log(".....PASS...TROUGH.....")
 					console.log(
 				
 						"projectile y:" + this.body.y,
-						"truck top:" + rect.left,
-						"truck btm:" + rect.btm
+						"truck top:" + car_rect.left,
+						"truck btm:" + car_rect.btm
 					)*/
 					// check top - bottom rect
-					was_hit = this.body.y > rect.top && this.body.y < rect.btm;
+					was_hit = this.body.y > car_rect.top && this.body.y < car_rect.btm;
 					console.log("Was Hit:" + was_hit);
 				}
 				return was_hit;
@@ -885,6 +1017,19 @@ if (reversed == null) { reversed = false; }
 			fireEngineStart();
 		}
 		
+		
+		// bind method to stage
+		this.freezeGame = ()=>{
+			
+			console.log(all_wheels)
+			console.log(all_buttons)
+			all_wheels.forEach((item)=>{item.stop()});
+			all_buttons.forEach((item)=>{item.mouseEnabled = false});
+			fireEngineStop();
+			createjs.Tween.removeAllTweens();
+			isCrarMoving = false;
+		}
+		
 		// Stop All on Start
 		all_car_components.forEach((item)=>{item.stop()});
 		
@@ -910,15 +1055,28 @@ if (reversed == null) { reversed = false; }
 
 	this.timeline.addTween(cjs.Tween.get(this.___camera___instance).wait(1));
 
+	// panels_obj_
+	this.panels = new lib.Scene_1_panels();
+	this.panels.name = "panels";
+	this.panels.setTransform(484.8,385.7,1,1,0,0,0,484.8,385.7);
+	this.panels.depth = 0;
+	this.panels.isAttachedToCamera = 0
+	this.panels.isAttachedToMask = 0
+	this.panels.layerDepth = 0
+	this.panels.layerIndex = 0
+	this.panels.maskLayerName = 0
+
+	this.timeline.addTween(cjs.Tween.get(this.panels).wait(1));
+
 	// buttons_obj_
 	this.buttons = new lib.Scene_1_buttons();
 	this.buttons.name = "buttons";
-	this.buttons.setTransform(511.9,56.6,1,1,0,0,0,511.9,56.6);
+	this.buttons.setTransform(508.8,58.2,1,1,0,0,0,508.8,58.2);
 	this.buttons.depth = 0;
 	this.buttons.isAttachedToCamera = 0
 	this.buttons.isAttachedToMask = 0
 	this.buttons.layerDepth = 0
-	this.buttons.layerIndex = 0
+	this.buttons.layerIndex = 1
 	this.buttons.maskLayerName = 0
 
 	this.timeline.addTween(cjs.Tween.get(this.buttons).wait(1));
@@ -931,7 +1089,7 @@ if (reversed == null) { reversed = false; }
 	this.interactive.isAttachedToCamera = 0
 	this.interactive.isAttachedToMask = 0
 	this.interactive.layerDepth = 0
-	this.interactive.layerIndex = 1
+	this.interactive.layerIndex = 2
 	this.interactive.maskLayerName = 0
 
 	this.timeline.addTween(cjs.Tween.get(this.interactive).wait(1));
@@ -944,7 +1102,7 @@ if (reversed == null) { reversed = false; }
 	this.background.isAttachedToCamera = 0
 	this.background.isAttachedToMask = 0
 	this.background.layerDepth = 0
-	this.background.layerIndex = 2
+	this.background.layerIndex = 3
 	this.background.maskLayerName = 0
 
 	this.timeline.addTween(cjs.Tween.get(this.background).wait(1));
@@ -957,7 +1115,7 @@ if (reversed == null) { reversed = false; }
 	this.other.isAttachedToCamera = 0
 	this.other.isAttachedToMask = 0
 	this.other.layerDepth = 0
-	this.other.layerIndex = 3
+	this.other.layerIndex = 4
 	this.other.maskLayerName = 0
 
 	this.timeline.addTween(cjs.Tween.get(this.other).wait(1));
@@ -975,8 +1133,7 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/CachedBmp_1.png?1652013836818", id:"CachedBmp_1"},
-		{src:"images/car_minigame_atlas_1.png?1652013836797", id:"car_minigame_atlas_1"}
+		{src:"images/CachedBmp_1.png?1652017297181", id:"CachedBmp_1"}
 	],
 	preloads: []
 };
